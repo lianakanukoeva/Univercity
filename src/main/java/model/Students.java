@@ -1,9 +1,11 @@
+package model;
+
 public class Students {
-    String id;
-    String fullName;
-    String universityId;
-    int currentCourseNumber;
-    float avgExamScore;
+    private String id;
+    private String fullName;
+    private String universityId;
+    private int currentCourseNumber;
+    private float avgExamScore;
 
     public Students (String id, String fullName, String universityId, int currentCourseNumber, float avgExamScore) {
         this.id = id;

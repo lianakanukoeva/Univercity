@@ -1,9 +1,13 @@
+package model;
+
+import enums.StudyProfile;
+
 public class University {
-    String id;
-    String fullName;
-    String shortName;
-    int yearOfFoundation;
-    StudyProfile mainProfile;
+    private String id;
+    private String fullName;
+    private String shortName;
+    private int yearOfFoundation;
+    private StudyProfile mainProfile;
 
     public University(String id, String fullName, String shortName, int yearOfFoundation, StudyProfile mainProfile) {
         this.id = id;
@@ -67,14 +71,4 @@ public class University {
                 ", mainProfile=" + mainProfile +
                 '}';
     }
-}
-
-enum StudyProfile {
-    MEDICINE,
-    PROGRAMMING,
-    FILILOGY,
-    HISTORY,
-    ART,
-    ECONOMY,
-    MARKETING
 }
