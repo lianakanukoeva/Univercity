@@ -13,6 +13,15 @@
         <maven.compiler.target>15</maven.compiler.target>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <profile.name>universityInfo</profile.name>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencies>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -29,6 +38,18 @@
             <artifactId>apache-poi-ooxml</artifactId>
             <version>1.2.1.2-jre17</version>
         </dependency>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>Univercity</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resourse/${profile.name}.xlsx</directory>
+            </resource>
+        </resources>
+    </build>
 
 </project>
