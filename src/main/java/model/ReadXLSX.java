@@ -20,23 +20,25 @@ public class ReadXLSX {
         // <Row> используется как тип, потому что итерация должна проходиться по строчкам
         // строчки, которые мы обрабатываем нам предоставляет оператор, а сами строчки - экземпляры класса Row
         // и чтобы была какая-то состыковка или взаимодействие стоит записать его как Generic
-        Iterator<Row> sheetIterator = workbook.getSheet("Студенты").iterator();
+        Iterator sheetIterator = workbook.getSheet("Студенты").iterator();
         // вызов метода next, чтобы пропустить заголовок также объявление экземпляра класса Row
-        Row rowFile = sheetIterator.next();
         int i = 0;
-        // далее составить цикл while
 
         // созданы коллекции для аспектов
-        List<String> studentsCollection = new ArrayList<>();
-        List<String> universityCollection = new ArrayList<>();
+        List<Cell> studentsCollection = new ArrayList<>();
+        List<Cell> universityCollection = new ArrayList<>();
+
+        // далее составить цикл while
+        while(sheetIterator.hasNext()) {
+            Row row = (Row) sheetIterator.next();
+            Iterator cellIterator = row.cellIterator();
+            while (cellIterator.hasNext()) {
+                Cell cell = (Cell) cellIterator.next();
+                System.out.print(cell + " | ");
+
+                studentsCollection.add(cell);
+            }
+            System.out.println();
+        }
     }
 }
-
-/*
-* @Parameter(defaultValue = "${project}", required = true, readonly = true)
-    public MavenProject project;
-
-    public void execute() {
-        getLog().info("Project version: " + project.getVersion());
-    }
-* */
