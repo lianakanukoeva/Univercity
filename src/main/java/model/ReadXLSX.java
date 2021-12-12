@@ -1,5 +1,6 @@
 package model;
 
+import enums.StudyProfile;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -8,21 +9,16 @@ import java.io.IOException;
 import java.util.*;
 
 public class ReadXLSX {
-    public static void main(String[] args) throws IOException {
-        // подключаемся к файлу
-        String fileName = "src/main/resources/universityInfo.xlsx";
-        FileInputStream fis = new FileInputStream(fileName);
+    private ReadXLSX (){}
 
+    public static List<Students> readStudents(String fileName) throws IOException {
+//        fileName = "src/main/resources/universityInfo.xlsx";
         // созданы коллекции для аспектов
         // Generic должны быть классовыми (или как там по другому говорится)
         // иначе при работе с методами и попытке записи в список каких либо данных выползет ошибка
         // скажем спасибо еще раз разработчикам IDEA )))
+        FileInputStream fis = new FileInputStream(fileName);
         List<Students> studentsCollection = new ArrayList<>();
-        List<University> universityCollection = new ArrayList<>();
-
-        // экземпляры классаов, хэллоу
-
-        University university = new University();
 
         // создана переменная для работы с excel-файлом
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
@@ -30,14 +26,14 @@ public class ReadXLSX {
         // второй способ
         // вытаскиваем данные с помощью for
         // для начала объявляем лист, с которым работаем
-        Sheet sheet = workbook.getSheet("Студенты");
+        Sheet sheetStudents = workbook.getSheet("Студенты");
         // далее определяем количество строк (получаем это количество с помощью метода)
-        int rowLength = sheet.getPhysicalNumberOfRows();
+        int rowLength = sheetStudents.getPhysicalNumberOfRows();
         // проходимся по циклу строк
         for (int i = 1; i < rowLength; i++) {
             // объявляем строчки
             // получаем каждую
-            Row row = sheet.getRow(i);
+            Row row = sheetStudents.getRow(i);
             Students students = new Students();
             // проходимся по ним циклом (тем же способом, что и со строчками), в котором получаем ячейки
             for (int j = 0; j < row.getPhysicalNumberOfCells(); j++) {
@@ -58,25 +54,45 @@ public class ReadXLSX {
             }
             studentsCollection.add(students);
         }
-        for (Students student : studentsCollection) {
-            System.out.println(student.toString());
+        return studentsCollection;
+    }
+
+    // тоже самое только теперь с Университетами
+    public static List<University> readUniversity(String fileName) throws IOException {
+        FileInputStream fis = new FileInputStream(fileName);
+
+        List<University> universityCollection = new ArrayList<>();
+
+        XSSFWorkbook workbook = new XSSFWorkbook(fis);
+
+        Sheet sheetUniversity = workbook.getSheet("Университеты");
+
+        int rowLengthUn = sheetUniversity.getPhysicalNumberOfRows();
+
+        for (int i = 1; i < rowLengthUn; i++) {
+            Row row = sheetUniversity.getRow(i);
+            University university = new University();
+            for (int j = 0; j < row.getPhysicalNumberOfCells(); j++) {
+                Cell cell = row.getCell(j);
+                if(j == 0) {
+                university.setId(cell.getStringCellValue());
+                }
+                if (j == 1) {
+                    university.setFullName(cell.getStringCellValue());
+                }
+                if (j == 2) {
+                    university.setShortName(cell.getStringCellValue());
+                }
+                if (j == 3) {
+                    university.setYearOfFoundation((int)cell.getNumericCellValue());
+                }
+                if (j == 4) {
+                    // спасибо IDEA <з
+                    university.setMainProfile(StudyProfile.valueOf(cell.getStringCellValue()));
+                }
+            }
+            universityCollection.add(university);
         }
+        return universityCollection;
     }
 }
-// собирать коллекции придется из элементов классов
-// создать экзмепляры классов
-// присваивать каждому экземепляру значение с таблицы
-// добавлять значение экзмепляров в коллециии
-// найти способ их не попутать
-// вывести мешанину в консоль
-// разбить класс на 2 метода
-// разобратьс с enum
-
-/*
-*
-* this.id = id;
-        this.fullName = fullName;
-        this.shortName = shortName;
-        this.yearOfFoundation = yearOfFoundation;
-        this.mainProfile = mainProfile;
-* */

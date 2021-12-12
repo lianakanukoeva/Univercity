@@ -57,9 +57,7 @@ public class University {
         this.yearOfFoundation = yearOfFoundation;
     }
 
-    public void setMainProfile(StudyProfile mainProfile) {
-        this.mainProfile = mainProfile;
-    }
+    public void setMainProfile(StudyProfile mainProfile) { this.mainProfile = mainProfile; }
 
     @Override
     public String toString() {
