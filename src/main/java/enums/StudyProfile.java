@@ -3,7 +3,7 @@ package enums;
 public enum StudyProfile {
     MEDICINE("Медицина"),
     PROGRAMMING("Программирование"),
-    FILILOGY("Филология"),
+    FILOLOGY("Филология"),
     HISTORY("История"),
     ART("Искусство"),
     ECONOMY("Экономика"),
@@ -14,7 +14,7 @@ public enum StudyProfile {
 
     private final String profileName;
 
-    private StudyProfile(String profileName) {
+    StudyProfile(String profileName) {
         this.profileName = profileName;
     }
 }
