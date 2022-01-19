@@ -3,6 +3,7 @@ import comparators.UniversityComparator;
 import enums.StudentsEnum;
 import enums.UniversityEnum;
 import inputoutput.SortEnums;
+import jsonutil.JsonUtil;
 import model.Students;
 import model.University;
 
@@ -26,5 +27,9 @@ public class Main {
 
         Stream studentsStream = students.stream();
         studentsStream.sorted(studentsComparators).forEach(System.out::println);
+
+        List<University> universityjsonlist = JsonUtil.universityListSerialize(universities);
+        List<Students> studentsList = JsonUtil.studentsListSerialize(students);
+
     }
 }

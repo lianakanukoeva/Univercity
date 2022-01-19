@@ -12,7 +12,6 @@ public class ReadXLSX {
     private ReadXLSX (){}
 
     public static List<Students> readStudents(String fileName) throws IOException {
-//        fileName = "src/main/resources/universityInfo.xlsx";
         // созданы коллекции для аспектов
         // Generic должны быть классовыми (или как там по другому говорится)
         // иначе при работе с методами и попытке записи в список каких либо данных выползет ошибка
