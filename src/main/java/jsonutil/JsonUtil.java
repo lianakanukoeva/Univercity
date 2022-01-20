@@ -20,26 +20,24 @@ public class JsonUtil {
         System.out.println(json);
     }
 
-    public static List<University> universityListSerialize(List<University> university) throws IOException {
+    public static String universityListSerialize(List<University> university) throws IOException {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .create();
         String json = gson.toJson(university);
         System.out.println(json);
-        return university;
+        return json;
     }
 
     public static void UniversityDeserialize(String jsonName) throws IOException {
-        FileReader file = new FileReader(jsonName);
         Gson gson = new Gson();
-        gson.fromJson(file, University.class);
+        gson.fromJson(jsonName, University.class);
         System.out.println(gson);
     }
 
-    public static void UniversityListDeserialize(String jsonName) throws IOException {
-        FileReader file = new FileReader(jsonName);
+    public static void universityListDeserialize(String jsonName) throws IOException {
         Type universityList = new TypeToken<List<University>>() {}.getType();
-        List<University> gson = new Gson().fromJson(file, universityList);
+        List<University> gson = new Gson().fromJson(jsonName, universityList);
         System.out.println(gson);
     }
 
@@ -51,26 +49,24 @@ public class JsonUtil {
         System.out.println(json);
     }
 
-    public static List<Students> studentsListSerialize(List<Students> students) throws IOException {
+    public static String studentsListSerialize(List<Students> students) throws IOException {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .create();
         String json = gson.toJson(students);
         System.out.println(json);
-        return students;
+        return json;
     }
 
     public static void StudentsDeserialize(String jsonName) throws IOException {
-        FileReader file = new FileReader(jsonName);
         Gson gson = new Gson();
-        gson.fromJson(file, Students.class);
+        gson.fromJson(jsonName, Students.class);
         System.out.println(gson);
     }
 
-    public static void StudentsListDeserialize(String jsonName) throws IOException {
-        FileReader file = new FileReader(jsonName);
+    public static void studentsListDeserialize(String jsonName) throws IOException {
         Type studentsList = new TypeToken<List<Students>>() {}.getType();
-        List<Students> gson = new Gson().fromJson(file, studentsList);
+        List<Students> gson = new Gson().fromJson(jsonName, studentsList);
         System.out.println(gson);
     }
 }

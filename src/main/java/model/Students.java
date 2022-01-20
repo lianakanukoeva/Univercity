@@ -1,12 +1,19 @@
 package model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Students implements Serializable {
+    @SerializedName("id_students")
     private String id;
+    @SerializedName("full_name")
     private String fullName;
+    @SerializedName("university_id")
     private String universityId;
+    @SerializedName("current_course_number")
     private double currentCourseNumber;
+    @SerializedName("avg_exam_score")
     private double avgExamScore;
 
     public Students (String id, String fullName, String universityId, double currentCourseNumber, double avgExamScore) {

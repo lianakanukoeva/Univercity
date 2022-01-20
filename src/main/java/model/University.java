@@ -7,15 +7,15 @@ import java.io.Serializable;
 import java.util.List;
 
 public class University implements Serializable{
-    @SerializedName("idUniversity")
+    @SerializedName("id_university")
     private String id;
-    @SerializedName("fullName")
+    @SerializedName("full_name")
     private String fullName;
-    @SerializedName("shortName")
+    @SerializedName("short_name")
     private String shortName;
-    @SerializedName("yearOfFoundation")
+    @SerializedName("year_of_foundation")
     private int yearOfFoundation;
-    @SerializedName("mainProfile")
+    @SerializedName("main_profile")
     private StudyProfile mainProfile;
 
     public University(String id, String fullName, String shortName, int yearOfFoundation, StudyProfile mainProfile) {
